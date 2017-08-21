@@ -1,9 +1,12 @@
 <template>
   <div class="hello">
-    <h1>{{title}}</h1> 
+    <h1>{{title}}</h1>
     <!-- <h1 v-html='title'></h1>  -->
     <!-- The alternative way to wirte <h1 v-text="title"></h1> -->
     <!-- The both works -->
+    <ul>
+      <li v-for="item in items">{{item.label}}</li>
+    </ul>
   </div>
 </template>
 
@@ -20,7 +23,14 @@ export default {
       // So, to solve this problem we use <h1 v-html='title'></h1> to declear it
       // Now, we want to make the todo list
       items: [
-        {}
+        {
+          lable: 'todo coding',
+          isFinished: false
+        },
+        {
+          lable: 'eating',
+          isFinished: true
+        }
       ]
     }
   }

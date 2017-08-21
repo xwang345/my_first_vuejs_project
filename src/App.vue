@@ -1,22 +1,63 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div class="app">
+    <!-- <h1>{{title}}</h1> -->
+    <h1 v-html='title'></h1>
+    <input v-model="newItem" v-on:keyup.enter="addNew">
+    <!-- The alternative way to wirte <h1 v-text="title"></h1> -->
+    <!-- The both works -->
+    <ul>
+      <li v-for="item in items" v-bind:class="{finished: item.isFinished}" v-on:click="toggleFinish(item)">
+        {{item.lable}}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-
 export default {
-  name: 'app',
-  components: {
-    Hello
+  data () { //the alternative way data: function (){}
+    return {
+      title: '<span>???</span>This is a todo list',
+      // msg: 'Welcome to Your Vue.js App',
+      // msg2: 'Hello to Vue world'
+      // now I use <h1 v-text="title"></h1> to decleare a <span> tag in the HTML see what happened?
+      // title: ' <span>???</span>This is a todo list'
+      // The anwser is the <h1 v-text="title"></h1> do not escape the <span> tag, and will display "<span>???</span>This is a todo list" in the browser
+      // So, to solve this problem we use <h1 v-html='title'></h1> to declear it
+      // Now, we want to make the todo list
+      items: [
+        {
+          lable: 'todo coding',
+          isFinished: false
+        },
+        {
+          lable: 'eating',
+          isFinished: true
+        }
+      ],
+      newItem: {},
+      liClass: 'this is liClass',
+        }
+      },
+      methods: {
+        toggleFinish: (item) => {
+          item.isFinished = !item.isFinished;
+    },
+    addNew: function() {
+      this.items.push({
+        lable: this .newItem,
+        isFinished: false
+      })
+      this.newItem = ''
+    }
   }
 }
 </script>
 
 <style>
+.finished {
+  text-decoration: underline;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
