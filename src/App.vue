@@ -35,7 +35,6 @@ export default {
           isFinished: true
         }
       ],
-      newItem: {},
       liClass: 'this is liClass',
         }
       },
