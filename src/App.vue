@@ -10,12 +10,14 @@
         {{item.lable}}
       </li>
     </ul>
+    <component-a msgfromparent='This mssage from parent!!!'></component-a>
   </div>
 </template>
 
 <script>
 import Store from './store.js'
-console.log(Store);
+import ComponentA from './components/componentA.vue'
+console.log(ComponentA);
 export default {
   data () { //the alternative way data: function (){}
     return {
@@ -40,6 +42,7 @@ export default {
       liClass: 'this is liClass',
         }
       },
+      components: { ComponentA },
       watch: {
         items:{
             handler: function (items) {
@@ -54,7 +57,7 @@ export default {
     },
     addNew: function() {
       this.items.push({
-        lable: this .newItem,
+        lable: this.newItem,
         isFinished: false
       })
       this.newItem = '';
@@ -66,6 +69,9 @@ export default {
 <style>
 .finished {
   text-decoration: underline;
+}
+component-a {
+  color: red;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
