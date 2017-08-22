@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import Store from './store.js'
+console.log(Store);
 export default {
   data () { //the alternative way data: function (){}
     return {
@@ -38,6 +40,14 @@ export default {
       liClass: 'this is liClass',
         }
       },
+      watch: {
+        items:{
+            handler: function (items) {
+                Store.save(items);
+            },
+            deep: true
+        }
+      },
       methods: {
         toggleFinish: (item) => {
           item.isFinished = !item.isFinished;
@@ -47,7 +57,7 @@ export default {
         lable: this .newItem,
         isFinished: false
       })
-      this.newItem = ''
+      this.newItem = '';
     }
   }
 }
